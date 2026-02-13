@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Actividad 03 - Interpretación y traducción de políticas iptables" />
+  <title>Actividad 03 | Seguridad Informática</title>
+
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <h1>Donaldo Demián Gómez Arreguín</h1>
+    <p class="alias">Alias: <strong>DemianDAG</strong></p>
+    <p class="course">CNO V – Seguridad Informática</p>
+    <p class="institution">Universidad Politécnica de San Luis Potosí</p>
+    <p class="period">Periodo: 8vo semestre. Primavera 2026</p>
+  </div>
+
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../actividades.html">Actividades</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<section>
+  <h2>Actividad 03 — Interpretación y traducción de políticas de filtrado en iptables</h2>
+  <p><strong>Fecha:</strong> 4 de febrero de 2026</p>
+</section>
+
+<section>
+  <h3>1. Flujo de procesamiento de un paquete</h3>
+  <p>
+    Cuando un paquete llega al sistema, primero pasa por una 
+    <strong>[CADENA]</strong>, después por una <strong>[TABLA]</strong> 
+    y finalmente se ejecuta una <strong>[ACCIÓN]</strong>.
+  </p>
+</section>
+
+<section>
+  <h3>2. Propósito de las tablas iptables</h3>
+
+  <div class="table-wrap">
+    <table class="tech-table">
+      <thead>
+        <tr>
+          <th>Tabla</th>
+          <th>Propósito principal</th>
+          <th>Ejemplo de uso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>FILTER</td><td>Filtrado de paquetes</td><td>Bloquear puertos</td></tr>
+        <tr><td>NAT</td><td>Traduccion de direcciones</td><td>Compartir internet</td></tr>
+        <tr><td>MANGLE</td><td>Modificar paquetes</td><td>Medir la calidad del servicio</td></tr>
+        <tr><td>RAW</td><td>Excluir paquetes del seguimiento de conexión</td><td>Ignorar paquetes</td></tr>
+        <tr><td>SECURITY</td><td>Control de seguridad</td><td>Politicas</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h3>3. Anatomía de un comando iptables</h3>
+  <p>
+    <code>iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT</code>
+  </p>
+</section>
+
+<section>
+  <h3>4. Interpretación del comando</h3>
+  <p>Permite el tráfico TCP entrante por los puertos 80 y 443.</p>
+</section>
+
+<section>
+  <h3>5. Variables y opciones comunes</h3>
+
+  <p><strong>a) Limitar intentos por minuto</strong></p>
+  <p><code>-m limit --limit 5/min</code></p>
+
+  <p><strong>b) Filtrar por IP de origen</strong></p>
+  <p><code>-s 192.168.25.0/29</code></p>
+
+  <p><strong>c) Ver solo números sin DNS</strong></p>
+  <p><code>iptables -L -n</code></p>
+
+  <p><strong>d) Ver reglas con contadores</strong></p>
+  <p><code>iptables -L -v</code></p>
+</section>
+
+<section>
+  <h3>6. Interpretación de regla</h3>
+  <p>
+    <code>
+      iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 
+      -m state --state NEW,ESTABLISHED -j ACCEPT
+    </code>
+  </p>
+
+  <p>Permite tráfico SSH, HTTP y HTTPS entrante y mantiene las conexiones establecidas.</p>
+</section>
+
+<section>
+  <h3>7. Traducción de políticas</h3>
+
+  <p><strong>Permitir tráfico HTTP entrante</strong></p>
+  <p><code>iptables -A INPUT -p tcp --dport 80 -j ACCEPT</code></p>
+
+  <p><strong>Permitir todo el tráfico saliente</strong></p>
+  <p><code>iptables -A OUTPUT -j ACCEPT</code></p>
+
+  <p><strong>Permitir SSH solo desde 192.168.1.50</strong></p>
+  <p><code>iptables -A INPUT -p tcp --dport 22 -s 192.168.1.50 -j ACCEPT</code></p>
+
+  <p><strong>Permitir TCP a 80 y 443 solo si establecido</strong></p>
+  <p><code>iptables -A INPUT -p tcp -m multiport --dports 80,443 \-m state --state ESTABLISHED,RELATED -j ACCEPT</code></p>
+
+  <p><strong>Permitir TCP a 22,80,443 en eth0 con registro</strong></p>
+  <p><code>iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \-m state --state NEW -j LOG --log-prefix "INTENTO_TCP: "</code></p>
+  <p><code>iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \-m state --state NEW,ESTABLISHED -j ACCEPT</code></p>
+
+
+</section>
+
+<section>
+  <h3>8. Reflexión técnica</h3>
+  <p>
+    La interpretación de reglas iptables permite comprender cómo se implementan 
+    políticas de seguridad a nivel de red en sistemas Linux. Analizar cada parámetro 
+    y opción evidencia que el filtrado de tráfico depende de criterios explícitos, 
+    lo que reduce la exposición del sistema a accesos no autorizados.
+  </p>
+  <p>
+    Este ejercicio demuestra que la correcta configuración del firewall no solo 
+    implica conocer comandos, sino entender el flujo de paquetes, estados de conexión 
+    y el principio de mínimo privilegio. En entornos reales, una mala definición de 
+    reglas puede permitir accesos indebidos o bloquear servicios legítimos.
+  </p>
+</section>
+
+<section>
+  <h3>9. Referencias</h3>
+  <ul>
+    <li>Netfilter Project. Iptables Documentation.</li>
+    <li>Linux Manual Pages. iptables(8).</li>
+  </ul>
+</section>
+
+<section>
+  <a href="../pdf/actividad03.pdf" class="pdf-button" download>
+    Exportar a PDF
+  </a>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 Donaldo Demián Gómez Arreguín</p>
+</footer>
+
+</body>
+</html>

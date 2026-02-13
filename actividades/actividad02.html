@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Actividad 02 - Análisis de servicios de seguridad (X.800 y RFC 4949) - Portafolio Seguridad Informática" />
+  <title>Actividad 02 | Seguridad Informática</title>
+
+  <!-- OJO: esta ruta es correcta porque actividad02.html vive en /actividades/ -->
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body>
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="header-container">
+      <h1>Donaldo Demián Gómez Arreguín</h1>
+      <p class="alias">Alias: <strong>DemianDAG</strong></p>
+      <p class="course">CNO V – Seguridad Informática</p>
+      <p class="institution">[Nombre de la Institución]</p>
+      <p class="period">Periodo: 8vo semestre. Primavera 2026</p>
+    </div>
+
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="../actividades.html">Actividades</a></li>
+        <li><a href="#">Proyectos</a></li>
+        <li><a href="../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main>
+    <!-- ===== TÍTULO ===== -->
+    <section>
+      <h2>Actividad 02 — Análisis de servicios de seguridad (ITU-T X.800 y RFC 4949)</h2>
+      <p><strong>Carrera:</strong> Ingeniería en Tecnologías de la Información</p>
+      <p><strong>Profesor:</strong> Servando López Contreras</p>
+      <p><strong>Fecha de entrega:</strong> 27/01/2026</p>
+    </section>
+
+    <!-- ===== INTRODUCCIÓN ===== -->
+    <section>
+      <h3>1. Introducción</h3>
+      <p>
+        En el contexto actual, donde las organizaciones dependen de manera crítica de los sistemas de información y de las redes
+        de comunicación para operar, la seguridad informática se ha convertido en un componente estratégico y no únicamente técnico.
+        Los incidentes de ciberseguridad ya no solo afectan a la infraestructura tecnológica, sino que también generan impactos
+        operativos, legales, económicos y reputacionales de gran magnitud.
+      </p>
+      <p>
+        La recomendación <strong>ITU-T X.800</strong> establece una arquitectura de referencia para la seguridad en sistemas interconectados,
+        definiendo seis servicios fundamentales: <strong>autenticación</strong>, <strong>control de acceso</strong>, <strong>confidencialidad</strong>,
+        <strong>integridad</strong>, <strong>no repudio</strong> y <strong>disponibilidad</strong>.
+      </p>
+      <p>
+        De forma complementaria, el <strong>RFC 4949</strong> funciona como un glosario de seguridad en Internet,
+        proporcionando definiciones estandarizadas para amenazas, vulnerabilidades y ataques. Esto permite describir y documentar
+        escenarios reales usando terminología técnica consistente.
+      </p>
+    </section>
+
+    <!-- ===== ENFOQUE DEL ANÁLISIS ===== -->
+    <section>
+      <h3>2. Enfoque del análisis</h3>
+      <p>
+        Se analizaron distintos escenarios de incidentes y ataques para identificar los servicios de seguridad comprometidos
+        según X.800, relacionarlos con definiciones aplicables del RFC 4949, y proponer medidas de control recomendadas.
+        Este análisis facilita distinguir áreas afectadas por cada incidente y reflexionar sobre controles que pueden mejorarse
+        tanto a nivel individual como organizacional.
+      </p>
+    </section>
+
+    <!-- ===== (OPCIONAL) RECURSOS VISUALES ===== -->
+    <section class="image-cards">
+
+    <div class="card">
+        <img src="../img/x800-servicios.png" alt="Servicios de seguridad ITU-T X.800" />
+        <p>Figura 1. Servicios de seguridad ITU-T X.800.</p>
+    </div>
+
+    <div class="card">
+        <img src="../img/rfc4949-terminos.png" alt="Términos clave RFC 4949" />
+        <p>Figura 2. Terminología seleccionada del RFC 4949.</p>
+    </div>
+
+    </section>
+
+
+    <!-- ===== TABLA DE ESCENARIOS ===== -->
+    <section>
+      <h3>4. Análisis de escenarios</h3>
+
+      <p>
+        En los siguientes escenarios se resumen: servicios comprometidos (X.800), términos aplicables (RFC 4949),
+        tipo de amenaza, vector de ataque, impacto y medida de control recomendada.
+      </p>
+
+      <div class="table-wrap">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Escenario</th>
+              <th>Servicios X.800 comprometidos</th>
+              <th>Definiciones aplicables (RFC 4949)</th>
+              <th>Tipo de amenaza</th>
+              <th>Vector de ataque</th>
+              <th>Impacto técnico/operativo</th>
+              <th>Medida de control recomendada</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td>Confidencialidad, Integridad, Disponibilidad</td>
+              <td>Ransomware, Multi-stage attack, Data breach, Availability attack</td>
+              <td>Externa</td>
+              <td>Acceso sin autorización y filtración de datos</td>
+              <td>Cifrado masivo, pérdida de acceso a sistemas críticos, exposición de información sensible</td>
+              <td>Mejorar control de acceso y cifrado de datos</td>
+            </tr>
+
+            <tr>
+              <td>02</td>
+              <td>Confidencialidad, Control de acceso</td>
+              <td>Misconfiguration, Exposure, Unauthorized access</td>
+              <td>Externa por error interno</td>
+              <td>Mala configuración de permisos en servicios en la nube</td>
+              <td>Exposición pública de datos sensibles, sanciones legales y daño reputacional</td>
+              <td>Monitoreo continuo de accesos y auditorías</td>
+            </tr>
+
+            <tr>
+              <td>03</td>
+              <td>Integridad, Confidencialidad</td>
+              <td>Supply chain attack, Malicious code, Trust exploitation</td>
+              <td>Externa</td>
+              <td>Compromiso de proveedor y distribución de actualizaciones maliciosas</td>
+              <td>Instalación de malware, acceso no autorizado, pérdida de confianza en el proveedor</td>
+              <td>Verificar integridad de actualizaciones y firmas digitales</td>
+            </tr>
+
+            <tr>
+              <td>04</td>
+              <td>Autenticación, Control de acceso</td>
+              <td>Phishing, Credential compromise, Authentication failure</td>
+              <td>Externa</td>
+              <td>Obtención de datos personales / credenciales</td>
+              <td>Acceso persistente no detectado y robo de información</td>
+              <td>Doble autenticación y detección de patrones inusuales</td>
+            </tr>
+
+            <tr>
+              <td>05</td>
+              <td>Disponibilidad, Integridad</td>
+              <td>Data destruction, Availability attack</td>
+              <td>Externa</td>
+              <td>Manipulación de respaldos y copias de seguridad</td>
+              <td>Pérdidas económicas y pérdida de información</td>
+              <td>Mejores respaldos y pruebas de restauración</td>
+            </tr>
+
+            <tr>
+              <td>06</td>
+              <td>Confidencialidad, Control de acceso</td>
+              <td>Insider threat, Privilege abuse</td>
+              <td>Interna</td>
+              <td>Acceso a información crítica</td>
+              <td>Filtración de datos y daño reputacional</td>
+              <td>Mayor monitoreo de acciones internas e introspección del personal</td>
+            </tr>
+
+            <tr>
+              <td>07</td>
+              <td>Integridad, No repudio</td>
+              <td>Evidentiary integrity, Audit trail compromise</td>
+              <td>Externa</td>
+              <td>Manipulación de registros del sistema</td>
+              <td>Pérdida/privación de información útil para auditoría e investigaciones</td>
+              <td>Control de acceso a registros y monitoreo</td>
+            </tr>
+
+            <tr>
+              <td>08</td>
+              <td>Disponibilidad</td>
+              <td>Operational failure, Service disruption</td>
+              <td>Interna</td>
+              <td>Actualizaciones sin supervisión</td>
+              <td>Interrupción del servicio / imposibilidad de acceder</td>
+              <td>Entorno de pruebas y planes de emergencia</td>
+            </tr>
+
+            <tr>
+              <td>09</td>
+              <td>Autenticación, Confidencialidad</td>
+              <td>Masquerade, Phishing, Social engineering</td>
+              <td>Externa</td>
+              <td>Suplantación de identidad</td>
+              <td>Filtración de información</td>
+              <td>Mejorar autenticación y concientización de riesgos</td>
+            </tr>
+
+            <tr>
+              <td>10</td>
+              <td>Confidencialidad, Integridad, Disponibilidad</td>
+              <td>Destructive attack, Data destruction</td>
+              <td>Externa</td>
+              <td>Acceso a sistemas y eliminación de datos</td>
+              <td>Daño interno y pérdida de sistemas/datos</td>
+              <td>Detección temprana, respaldos y monitoreo continuo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== REFLEXIÓN ===== -->
+    <section>
+      <h3>5. Reflexión técnica</h3>
+      <p>
+        A partir del análisis detallado de los escenarios presentados, se puede observar que los servicios de seguridad definidos
+        en la recomendación ITU-T X.800 continúan siendo plenamente vigentes, aun cuando fue publicada hace varias décadas.
+        Autenticación, control de acceso, confidencialidad, integridad, no repudio y disponibilidad siguen representando la base
+        sobre la cual se estructuran los mecanismos modernos de protección.
+      </p>
+      <p>
+        Uno de los aspectos que más llama la atención es que en la mayoría de los incidentes no necesariamente se explotan
+        vulnerabilidades extremadamente sofisticadas, sino fallas en configuraciones, malas prácticas de control de acceso o errores
+        humanos. Esto demuestra que la seguridad informática no depende únicamente de herramientas avanzadas, sino de una correcta
+        implementación de principios fundamentales.
+      </p>
+      <p>
+        Por otra parte, el uso del RFC 4949 como referencia terminológica permite comprender que los ataques actuales no son eventos
+        aislados, sino combinaciones de amenazas como <em>credential compromise</em>, <em>misconfiguration</em>, <em>insider threat</em>
+        o <em>multi-stage attack</em>. Contar con un lenguaje técnico estandarizado facilita la documentación, análisis y comunicación
+        profesional de los incidentes.
+      </p>
+      <p>
+        En el contexto latinoamericano, donde muchas organizaciones aún se encuentran en procesos de madurez en ciberseguridad,
+        la adopción formal de marcos como X.800 y el uso correcto de terminología técnica podría fortalecer significativamente la
+        gestión de riesgos. Considero que la mayor debilidad suele encontrarse en el control de acceso y en la disponibilidad,
+        especialmente por ausencia de monitoreo continuo y estrategias de respaldo adecuadas.
+      </p>
+      <p>
+        Este ejercicio no solo permitió identificar vulneraciones específicas, sino también reforzar la importancia de analizar los
+        incidentes desde una perspectiva estructurada y profesional.
+      </p>
+    </section>
+
+    <!-- ===== REFERENCIAS ===== -->
+    <section>
+      <h3>6. Referencias</h3>
+      <ul>
+        <li>
+          International Telecommunication Union (ITU). (1991). <em>ITU-T Recommendation X.800: Security Architecture for Open Systems Interconnection (OSI) for CCITT Applications</em>.
+          Disponible en: https://www.itu.int/rec/T-REC-X.800
+        </li>
+        <li>
+          Shirey, R. (2007). <em>RFC 4949: Internet Security Glossary, Version 2</em>. Internet Engineering Task Force (IETF).
+          Disponible en: https://datatracker.ietf.org/doc/html/rfc4949
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== EXPORTAR PDF ===== -->
+    <section>
+      <a href="../pdf/actividad02.pdf" class="pdf-button" download>Exportar a PDF</a>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <p>
+      © 2026 Donaldo Demián Gómez Arreguín | Portafolio de Seguridad Informática | Todos los derechos reservados.
+    </p>
+  </footer>
+</body>
+</html>

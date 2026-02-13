@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Actividad 04 - Mecanismos de defensa en red (iptables)" />
+  <title>Actividad 04 | Seguridad Informática</title>
+
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <h1>Donaldo Demián Gómez Arreguín</h1>
+    <p class="alias">Alias: <strong>DemianDAG</strong></p>
+    <p class="course">CNO V – Seguridad Informática</p>
+    <p class="institution">Universidad Politécnica de San Luis Potosí</p>
+    <p class="period">Periodo: 8vo semestre. Primavera 2026</p>
+  </div>
+
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../actividades.html">Actividades</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <section>
+    <h2>Actividad 04 — Mecanismos de defensa en red</h2>
+    <div class="meta-row">
+      <span class="chip">Firewall perimetral</span>
+      <span class="chip">LAN: 192.1.2.0/24</span>
+      <span class="chip">Mail: 192.1.2.10 (SMTP 25)</span>
+      <span class="chip">Web: 192.1.2.11 (HTTP 80)</span>
+      <span class="chip">DNS: TCP/53</span>
+      <span class="chip">Política: DROP por defecto</span>
+    </div>
+
+    <p><strong>Maestro:</strong> Servando López Contreras</p>
+    <p><strong>Matrícula:</strong> 179822</p>
+    <p><strong>Fecha:</strong> 04 de febrero de 2026</p>
+  </section>
+
+  <section>
+    <h3>1. Objetivo</h3>
+    <p>
+      Diseñar reglas de <strong>iptables</strong> para un firewall, tomando como referencia una topología de red,
+      con el fin de permitir únicamente el tráfico requerido y mantener una política restrictiva por defecto.
+      Las reglas deben considerar, cuando sea posible, <strong>protocolo</strong>, <strong>IP origen/destino</strong>,
+      <strong>puertos</strong> y <strong>estado de la conexión</strong>.
+    </p>
+  </section>
+
+  <section>
+    <h3>2. Topología de red</h3>
+    <div class="figure-card">
+      <img src="../img/act04-topologia.png" alt="Topología de red - Actividad 04">
+      <p>Figura 1. Topología utilizada para definir reglas del firewall (LAN 192.1.2.0/24, Mail 192.1.2.10, Web 192.1.2.11).</p>
+    </div>
+
+    <p>
+      La topología mostrada incluye una red local <strong>192.1.2.0/24</strong> conectada a Internet mediante un firewall,
+      y dos servidores internos: <strong>Servidor de correo (192.1.2.10)</strong> y <strong>Servidor web (192.1.2.11)</strong>. :contentReference[oaicite:2]{index=2}
+    </p>
+
+    <!-- Opcional: si quieres agregar la imagen de la topología -->
+    <!--
+    <img src="../img/act04-topologia.png" alt="Topología de red - Actividad 04">
+    <p>Figura 1. Topología utilizada para definir reglas del firewall.</p>
+    -->
+  </section>
+
+  <section>
+    <h3>3. Reglas propuestas en el firewall</h3>
+    <p>
+      A continuación se listan las reglas de iptables de acuerdo con los requerimientos de la actividad,
+      manteniendo una política restrictiva y permitiendo únicamente el tráfico necesario. :contentReference[oaicite:3]{index=3}
+    </p>
+    <div class="figure-card">
+      <img src="../img/iptables-flujo.png" alt="Flujo de procesamiento de paquetes en iptables">
+      <p>Figura 2. Flujo general de paquetes en iptables (cadenas INPUT, OUTPUT y FORWARD).</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Acción solicitada</th>
+            <th>Regla(s) iptables</th>
+            <th>Explicación breve</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>1</td>
+            <td>Establecer una política restrictiva</td>
+            <td>
+              <code>iptables -P INPUT DROP</code><br>
+              <code>iptables -P OUTPUT DROP</code>
+            </td>
+            <td>
+              Bloquea por defecto el tráfico entrante y saliente; se permite solo lo que se defina explícitamente.
+            </td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Permitir el tráfico de conexiones ya establecidas</td>
+            <td>
+              <code>iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</code><br>
+              <code>iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</code>
+            </td>
+            <td>
+              Permite respuestas de sesiones existentes (y relacionadas), evitando cortar comunicaciones legítimas.
+            </td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>Aceptar tráfico DNS (TCP) saliente de la red local</td>
+            <td>
+              <code>iptables -A OUTPUT -p tcp --dport 53 -s 192.1.2.0/24 -j ACCEPT</code>
+            </td>
+            <td>
+              Habilita consultas DNS por TCP desde la red local hacia el exterior.
+            </td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td>Aceptar correo entrante desde Internet al servidor de correo</td>
+            <td>
+              <code>iptables -A FORWARD -p tcp --dport 25 -d 192.1.2.10 -m state --state NEW,ESTABLISHED -j ACCEPT</code>
+            </td>
+            <td>
+              Permite SMTP entrante hacia el servidor de correo, aceptando nuevas conexiones y manteniendo sesiones establecidas.
+            </td>
+          </tr>
+
+          <tr>
+            <td>5</td>
+            <td>Permitir correo saliente a Internet desde el servidor de correo</td>
+            <td>
+              <code>iptables -A FORWARD -p tcp --sport 25 -s 192.1.2.10 -m state --state ESTABLISHED -j ACCEPT</code>
+            </td>
+            <td>
+              Permite el tráfico de salida asociado al envío/flujo de correo desde el servidor hacia Internet (sesiones establecidas).
+            </td>
+          </tr>
+
+          <tr>
+            <td>6</td>
+            <td>Aceptar conexiones HTTP desde Internet al servidor web</td>
+            <td>
+              <code>iptables -A FORWARD -p tcp --dport 80 -d 192.1.2.11 -m state --state NEW,ESTABLISHED -j ACCEPT</code>
+            </td>
+            <td>
+              Permite tráfico HTTP entrante hacia el servidor web, manteniendo continuidad de la sesión.
+            </td>
+          </tr>
+
+          <tr>
+            <td>7</td>
+            <td>Permitir tráfico HTTP desde la red local a Internet</td>
+            <td>
+              <code>iptables -A FORWARD -p tcp --dport 80 -s 192.1.2.0/24 -m state --state NEW,ESTABLISHED -j ACCEPT</code>
+            </td>
+            <td>
+              Habilita navegación HTTP desde la red local hacia Internet bajo política controlada (nuevo/establecido).
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top: 1rem;">
+      Nota: Las reglas están escritas conforme al planteamiento de la actividad y su topología (red 192.1.2.0/24, servidor de correo 192.1.2.10,
+      servidor web 192.1.2.11). :contentReference[oaicite:4]{index=4}
+    </p>
+  </section>
+
+  <section>
+    <h3>4. Reflexión técnica</h3>
+    <p>
+      Este ejercicio refuerza la importancia de partir de una política restrictiva por defecto, ya que obliga a permitir únicamente
+      el tráfico estrictamente necesario. En un entorno real, este enfoque reduce la superficie de ataque y evita que servicios no
+      requeridos queden expuestos.
+    </p>
+    <p>
+      También resulta claro que el estado de conexión (NEW, ESTABLISHED, RELATED) ayuda a mantener el funcionamiento normal de los servicios,
+      permitiendo respuestas legítimas sin abrir completamente el firewall. En general, definir reglas con IPs y puertos específicos facilita
+      el control y la trazabilidad de lo que realmente se está permitiendo en la red.
+    </p>
+  </section>
+
+  <section>
+    <h3>5. Referencias</h3>
+    <ul>
+      <li>Netfilter Project. Iptables Documentation. https://netfilter.org</li>
+      <li>Linux Manual Pages. iptables(8). https://man7.org/linux/man-pages/man8/iptables.8.html</li>
+    </ul>
+  </section>
+
+  <section>
+    <a href="../pdf/actividad04.pdf" class="pdf-button" download>Exportar a PDF</a>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Donaldo Demián Gómez Arreguín | Portafolio de Seguridad Informática</p>
+</footer>
+
+</body>
+</html>

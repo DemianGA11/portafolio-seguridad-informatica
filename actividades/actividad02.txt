@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad 02 | Seguridad Informática</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<header>
+    <!-- mismo header -->
+</header>
+
+<main>
+
+    <section>
+        <h2>Actividad 02 - Análisis de servicios de seguridad (X.800 y RFC 4949)</h2>
+        <p><strong>Fecha:</strong> Febrero 2026</p>
+    </section>
+
+    <!-- INTRODUCCIÓN -->
+    <section>
+        <h3>1. Introducción</h3>
+        <p>
+            Contextualización técnica del tema...
+        </p>
+    </section>
+
+    <!-- DESARROLLO -->
+    <section>
+        <h3>2. Desarrollo Técnico</h3>
+        <p>
+            Desarrollo detallado...
+        </p>
+    </section>
+
+    <!-- MULTIMEDIA -->
+    <section>
+        <h3>3. Recursos Visuales</h3>
+        <img src="../img/x800-diagrama.png" alt="Diagrama X.800">
+        <p>Figura 1. Servicios de seguridad.</p>
+    </section>
+
+    <!-- REFLEXIÓN -->
+    <section>
+        <h3>4. Reflexión Técnica</h3>
+        <p>
+            Análisis crítico personal...
+        </p>
+    </section>
+
+    <!-- REFERENCIAS -->
+    <section>
+        <h3>5. Referencias</h3>
+        <ul>
+            <li>ITU-T X.800...</li>
+            <li>RFC 4949...</li>
+        </ul>
+    </section>
+
+    <!-- EXPORTAR PDF -->
+    <section>
+        <a href="../pdf/actividad02.pdf" class="pdf-button" download>
+            Exportar a PDF
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    <!-- mismo footer -->
+</footer>
+
+</body>
+</html>

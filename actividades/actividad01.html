@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Actividad 01 - NotPetya Maersk 2017" />
+  <title>Actividad 01 | Seguridad Informática</title>
+
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <h1>Donaldo Demián Gómez Arreguín</h1>
+    <p class="alias">Alias: <strong>DemianDAG</strong></p>
+    <p class="course">CNO V – Seguridad Informática</p>
+    <p class="institution">Universidad Politécnica de San Luis Potosí</p>
+    <p class="period">Periodo: 8vo semestre. Primavera 2026</p>
+  </div>
+
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../actividades.html">Actividades</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<section>
+  <h2>Actividad 01 — Análisis de ciberataque real: NotPetya – Maersk (2017)</h2>
+  <div class="figure-card">
+    <img src="../img/notpetya-maersk-hero.jpeg" alt="Banner Caso" />
+    <p>Figura 1. Imagen ilustrativa de Caso NotPetya - Maersk (2017).</p>
+  </div>
+  <div class="meta-row">
+    <span class="chip">Caso: NotPetya – Maersk (2017)</span>
+    <span class="chip">Tipo: Wiper / ransomware disfrazado</span>
+    <span class="chip">Vector: Supply Chain (M.E.Doc)</span>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <p class="kpi-label">Impacto estimado</p>
+      <p class="kpi-value">USD 200–300M</p>
+      <p class="kpi-note">≈ $5,400M MXN (2017)</p>
+    </div>
+
+    <div class="kpi-card">
+      <p class="kpi-label">Duración</p>
+      <p class="kpi-value">10–14 días</p>
+      <p class="kpi-note">Recuperación gradual</p>
+    </div>
+
+    <div class="kpi-card">
+      <p class="kpi-label">Principio más afectado</p>
+      <p class="kpi-value">Disponibilidad</p>
+      <p class="kpi-note">Paro operativo global</p>
+    </div>
+  </div>
+    <div class="figure-card">
+    <img src="../img/notpetya-timeline.png" alt="Línea del tiempo del incidente NotPetya" />
+    <p>Figura 2. Cronología resumida del incidente NotPetya (2017).</p>
+  </div>
+
+</section>
+
+<section class="card-section">
+  <h3>1. Introducción</h3>
+  <p>
+    En el contexto de la digitalización global, una de las principales amenazas a las que se enfrentan las empresas y los gobiernos son los ciberataques, los cuales pueden afectar infraestructura crítica a escala internacional. Estos incidentes pueden provocar interrupciones graves en servicios esenciales y pérdidas económicas millonarias.
+  </p>
+  <p>
+    Uno de los casos más representativos fue el ataque NotPetya ocurrido en Ucrania en junio de 2017. Aunque inicialmente se presentó como ransomware, investigaciones posteriores demostraron que su objetivo real era la destrucción de sistemas y el sabotaje operativo. Entre las empresas más afectadas se encuentra A.P. Moller-Maersk, cuya infraestructura global de TI quedó paralizada, generando pérdidas estimadas entre 200 y 300 millones de dólares.
+  </p>
+</section>
+
+<section class="card-section">
+  <h3>2. Cronología del incidente</h3>
+  <p>
+    Antes del 27 de junio de 2017, atacantes asociados al grupo Sandworm comprometieron el servidor de actualizaciones del software contable ucraniano M.E.Doc, distribuyendo código malicioso dentro de una actualización legítima.
+  </p>
+  <p>
+    El 27 de junio, miles de empresas instalaron la actualización comprometida. El malware NotPetya sobrescribió el Master Boot Record y destruyó archivos críticos, dejando los sistemas inoperables. En Maersk, los sistemas comenzaron a fallar globalmente, obligando a desconectar la red corporativa. Durante días, la empresa operó manualmente mientras reconstruía su infraestructura.
+  </p>
+</section>
+
+<section class="card-section">
+  <h3>3. Contexto y vulnerabilidades</h3>
+  <p>
+    El ataque ocurrió en un contexto geopolítico de tensión en Europa del Este y se dirigió inicialmente a Ucrania mediante el software contable M.E.Doc, ampliamente utilizado por empresas y organismos públicos. La dependencia de este software generó un punto único de fallo sistémico.
+  </p>
+  <ul>
+    <li>Compromiso de la cadena de suministro (supply chain attack).</li>
+    <li>Servidor de actualizaciones sin verificación criptográfica.</li>
+    <li>Sistemas sin parches a vulnerabilidades como EternalBlue.</li>
+    <li>Redes corporativas sin segmentación.</li>
+    <li>Gestión de credenciales deficiente.</li>
+    <li>Backups no aislados.</li>
+  </ul>
+  </div>
+    <div class="figure-card">
+    <img src="../img/supply-chain-medoc.jpg" alt="Diagrama del ataque / cadena de suministro" />
+    <p>Figura 3. Diagrama del ataque / cadena de suministro</p>
+  </div>
+</section>
+
+<section class="card-section">
+  <h3>4. Análisis técnico del ataque</h3>
+  <p><strong>Tipo:</strong> Wiper disfrazado de ransomware.</p>
+  <p><strong>Vector de entrada:</strong> actualización maliciosa de M.E.Doc.</p>
+  <p><strong>Propagación:</strong> EternalBlue, EternalRomance y credenciales internas.</p>
+  <p><strong>Impacto técnico:</strong> sobrescritura del MBR y destrucción de sistemas.</p>
+
+  <h4>Etapas MITRE ATT&CK</h4>
+  <div class="table-wrap">
+    <table class="tech-table">
+      <thead>
+        <tr>
+          <th>Táctica</th>
+          <th>Qué ocurrió en el caso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Initial Access</td><td>Update maliciosa vía M.E.Doc (Supply Chain)</td></tr>
+        <tr><td>Execution</td><td>Ejecución automática al instalar la actualización</td></tr>
+        <tr><td>Privilege Escalation</td><td>Credenciales robadas + explotación</td></tr>
+        <tr><td>Lateral Movement</td><td>EternalBlue/EternalRomance + credenciales</td></tr>
+        <tr><td>Impact</td><td>MBR sobrescrito, inutilización de sistemas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+</section>
+
+<section class="card-section">
+  <h3>5. Evaluación de impacto (CIA)</h3>
+  <div class="table-wrap">
+    <table class="tech-table">
+      <thead>
+        <tr>
+          <th>Principio</th>
+          <th>Impacto</th>
+          <th>Evidencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Confidencialidad</strong></td>
+          <td>Riesgo por control administrativo total</td>
+          <td>Acceso a AD/servidores corporativos</td>
+        </tr>
+        <tr>
+          <td><strong>Integridad</strong></td>
+          <td>Destrucción/corrupción irreversible</td>
+          <td>MBR sobrescrito, SAP afectado</td>
+        </tr>
+        <tr>
+          <td><strong>Disponibilidad</strong></td>
+          <td>Paro global de operaciones</td>
+          <td>Puertos/terminales, reservas y logística</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<section class="card-section">
+  <h3>6. Impacto económico</h3>
+    <div class="table-wrap">
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th>Tipo de costo</th>
+            <th>Descripción</th>
+            <th>Estimación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pérdidas operativas</td>
+            <td>Inactividad global ~2 semanas</td>
+            <td>$3,500,000,000 MXN</td>
+          </tr>
+          <tr>
+            <td>Daños reputacionales</td>
+            <td>Confianza, marca, contratos</td>
+            <td>$800,000,000 MXN</td>
+          </tr>
+          <tr>
+            <td>Costos técnicos</td>
+            <td>Reinstalación, consultorías, reconstrucción</td>
+            <td>$1,100,000,000 MXN</td>
+          </tr>
+          <tr>
+            <td><strong>Total estimado</strong></td>
+            <td>≈ 300M USD * 18 (2017)</td>
+            <td><strong>$5,400,000,000 MXN</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  <p>
+    Las pérdidas totales se estimaron en aproximadamente 300 millones de dólares (≈ 5,400 millones MXN en 2017). El ataque evidenció que los costos de ruptura superaron ampliamente la inversión preventiva en seguridad.
+  </p>
+</section>
+
+<section class="card-section">
+  <h3>7. Marcos normativos relacionados</h3>
+  <ul>
+    <li><strong>ISO 27001:</strong> gestión de vulnerabilidades, segmentación y continuidad.</li>
+    <li><strong>NIST CSF:</strong> fallas en Identify, Protect y Detect.</li>
+    <li><strong>BCP/DRP:</strong> ausencia de backups aislados.</li>
+  </ul>
+</section>
+
+<section class="card-section">
+  <h3>8. Lecciones aprendidas</h3>
+  <ul>
+    <li>Auditoría continua de proveedores y terceros.</li>
+    <li>Segmentación de redes corporativas.</li>
+    <li>Backups aislados y protegidos.</li>
+    <li>Gestión oportuna de parches.</li>
+    <li>Planes de respuesta y continuidad.</li>
+  </ul>
+</section>
+
+<section class="card-section">
+  <h3>9. Reflexión técnica</h3>
+  <p>
+    El caso NotPetya demuestra que la ciberseguridad no depende únicamente de controles internos, sino también de la seguridad de la cadena de suministro. Una vulnerabilidad en un proveedor puede escalar hasta afectar operaciones globales. Asimismo, evidencia que la disponibilidad es el principio más crítico en infraestructuras logísticas, donde la interrupción tecnológica se traduce directamente en pérdidas económicas.
+  </p>
+  <p>
+    El análisis confirma que la inversión preventiva en segmentación, gestión de vulnerabilidades y respaldos aislados resulta significativamente menor que el costo de recuperación tras un incidente. Este caso refuerza la necesidad de adoptar marcos formales de gestión de seguridad y continuidad del negocio.
+  </p>
+</section>
+
+<section class="card-section">
+  <h3>10. Referencias</h3>
+  <ul>
+    <li>CNBC. (2017). Maersk says NotPetya cyberattack could cost $300 million.</li>
+    <li>Cyber Peace Institute. (2018). The Untold Story of NotPetya.</li>
+    <li>LRQA. NotPetya ransomware attack on Maersk – Key learnings.</li>
+    <li>U.S. Department of the Treasury. (2018). Sanctions related to NotPetya.</li>
+  </ul>
+</section>
+
+<section class="card-section">
+  <a href="../pdf/actividad01.pdf" class="pdf-button" download>Exportar a PDF</a>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 Donaldo Demián Gómez Arreguín | Portafolio de Seguridad Informática</p>
+</footer>
+
+</body>
+</html>
