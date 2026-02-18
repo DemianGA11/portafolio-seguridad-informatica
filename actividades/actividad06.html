@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Actividad 06 - Implementación de IPSec VPN Site-to-Site en Cisco Packet Tracer" />
+  <title>Actividad 06 | Seguridad Informática</title>
+
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <h1>Donaldo Demián Gómez Arreguín</h1>
+    <p class="alias">Alias: <strong>DemianDAG</strong></p>
+    <p class="course">CNO V – Seguridad Informática</p>
+    <p class="institution">Universidad Politécnica de San Luis Potosí</p>
+    <p class="period">Periodo: 8vo semestre. Primavera 2026</p>
+  </div>
+
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../actividades.html">Actividades</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Encabezado -->
+  <section class="card-section">
+    <h2>Actividad 06 — IPSec VPN (Site-to-Site)</h2>
+    <p><strong>Materia:</strong> CNO V – Seguridad Informática</p>
+    <p><strong>Profesor:</strong> Servando López Contreras</p>
+    <p><strong>Matrícula:</strong> 179822</p>
+    <p><strong>Fecha de entrega:</strong> 16/02/2026</p>
+
+    <div class="meta-row">
+      <span class="chip">VPN Site-to-Site</span>
+      <span class="chip">ISAKMP (IKE)</span>
+      <span class="chip">IPSec (ESP)</span>
+      <span class="chip">ACL + Crypto Map</span>
+      <span class="chip">Validación con show crypto</span>
+    </div>
+  </section>
+
+  <!-- Introducción -->
+  <section class="card-section">
+    <h3>1. Introducción</h3>
+    <p>
+      Las Redes Privadas Virtuales (VPN) basadas en IPSec son una de las soluciones más utilizadas
+      para asegurar la comunicación entre redes remotas a través de infraestructura pública como Internet.
+      IPSec permite aplicar cifrado, autenticación e integridad para proteger la información durante su transmisión.
+    </p>
+    <p>
+      En esta práctica se implementó una VPN Site-to-Site utilizando routers Cisco, estableciendo un túnel seguro
+      entre dos redes LAN conectadas mediante un ISP simulado, configurando negociación ISAKMP/IPSec,
+      ACLs y mapas criptográficos, y verificando su funcionamiento mediante pruebas de conectividad y monitoreo
+      de asociaciones de seguridad.
+    </p>
+
+    <!-- Imagen recomendada: topología -->
+    <div class="figure-card">
+      <img src="../img/act06-topologia.png" alt="Topología IPSec VPN - Actividad 06">
+      <p>Figura 1. Topología de red utilizada para implementar la VPN IPSec Site-to-Site.</p>
+    </div>
+  </section>
+
+  <!-- Objetivo -->
+  <section class="card-section">
+    <h3>2. Objetivo</h3>
+    <p>
+      Implementar una VPN IPSec Site-to-Site entre dos redes LAN, garantizando confidencialidad e integridad,
+      utilizando políticas ISAKMP, transform-set IPSec, ACL de tráfico interesante y crypto map aplicado a la interfaz
+      hacia la red pública.
+    </p>
+  </section>
+
+  <!-- Resumen técnico en tabla -->
+  <section class="card-section">
+    <h3>3. Resumen de implementación (checklist técnico)</h3>
+
+    <div class="table-wrap">
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Etapa</th>
+            <th>Qué se configura</th>
+            <th>Evidencia recomendada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Conectividad básica</td>
+            <td>IP en interfaces + rutas estáticas/default</td>
+            <td>Captura de interfaces y rutas</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Licencia securityk9</td>
+            <td>Habilitar paquete de seguridad + reload</td>
+            <td>Captura del comando y confirmación</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ACL “tráfico interesante”</td>
+            <td>Permitir tráfico entre 192.168.1.0/24 y 192.168.3.0/24</td>
+            <td>Captura del access-list 100</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Fase 1 ISAKMP</td>
+            <td>Policy (AES-256, pre-share, group) + key compartida</td>
+            <td>Captura del policy y key</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Fase 2 IPSec</td>
+            <td>Transform-set (ESP)</td>
+            <td>Captura del transform-set</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Crypto map</td>
+            <td>Peer + transform-set + match ACL + aplicar a interfaz</td>
+            <td>Capturas de crypto map + interface</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Validación</td>
+            <td>Ping + show crypto isakmp sa / show crypto ipsec sa</td>
+            <td>Captura de ping y SAs</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Desarrollo -->
+  <section class="card-section">
+    <h3>4. Desarrollo</h3>
+    <p>
+      Antes de implementar IPSec es indispensable asegurar conectividad básica entre R1, ISP y R3,
+      ya que sin rutas e IPs correctas no se formará el túnel. El ISP solo enruta tráfico entre ambos routers,
+      simulando una red pública sin cifrado.
+    </p>
+  </section>
+
+  <!-- Config inicial -->
+  <section class="card-section">
+    <h3>5. Configuración inicial</h3>
+
+    <h4>R1 (LAN 192.168.1.0/24)</h4>
+    <pre><code>enable
+conf t
+hostname R1
+interface g0/1
+ ip address 192.168.1.1 255.255.255.0
+ no shut
+interface g0/0
+ ip address 209.165.100.1 255.255.255.0
+ no shut
+exit
+ip route 0.0.0.0 0.0.0.0 209.165.100.2</code></pre>
+
+    <h4>ISP</h4>
+    <pre><code>enable
+conf t
+hostname ISP
+interface g0/1
+ ip address 209.165.200.2 255.255.255.0
+ no shut
+interface g0/0
+ ip address 209.165.100.2 255.255.255.0
+ no shut
+exit</code></pre>
+
+    <h4>R3 (LAN 192.168.3.0/24)</h4>
+    <pre><code>enable
+conf t
+hostname R3
+interface g0/1
+ ip address 192.168.3.1 255.255.255.0
+ no shut
+interface g0/0
+ ip address 209.165.200.1 255.255.255.0
+ no shut
+exit
+ip route 0.0.0.0 0.0.0.0 209.165.200.2</code></pre>
+
+    <div class="figure-card">
+      <img src="../img/act06-config-inicial.png" alt="Capturas configuración inicial R1 ISP R3">
+      <p>Figura 2. Evidencia de configuración inicial (interfaces IP y rutas). (Opcional: colocar capturas del Packet Tracer)</p>
+    </div>
+  </section>
+
+  <!-- Licencia -->
+  <section class="card-section">
+    <h3>6. Licencia de seguridad habilitada</h3>
+    <p>
+      Para utilizar IPSec en routers Cisco 1941 es necesario habilitar el paquete <strong>securityk9</strong>,
+      ya que sin esta licencia los comandos de seguridad no estarán disponibles.
+    </p>
+
+    <pre><code>license boot module c1900 technology-package securityk9
+reload</code></pre>
+
+    <div class="figure-card">
+      <img src="../img/act06-licencia-securityk9.png" alt="Licencia securityk9 habilitada">
+      <p>Figura 3. Evidencia del comando para habilitar securityk9 y reinicio (reload).</p>
+    </div>
+  </section>
+
+  <!-- ACL -->
+  <section class="card-section">
+    <h3>7. Implementación de ACLs (tráfico interesante)</h3>
+    <p>
+      Se configuró una ACL para identificar el tráfico que será protegido por IPSec, entre las redes
+      <strong>192.168.1.0/24</strong> y <strong>192.168.3.0/24</strong>.
+    </p>
+
+    <pre><code>access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255</code></pre>
+
+    <div class="figure-card">
+      <img src="../img/act06-acl100.png" alt="ACL 100 tráfico interesante">
+      <p>Figura 4. ACL 100 definiendo tráfico interesante entre LAN 1 y LAN 3.</p>
+    </div>
+  </section>
+
+  <!-- Fase 1 -->
+  <section class="card-section">
+    <h3>8. Fase 1 — ISAKMP policy (IKE)</h3>
+    <p>
+      ISAKMP permite negociar asociaciones de seguridad (SA), autenticar peers y acordar parámetros
+      criptográficos del túnel.
+    </p>
+
+    <pre><code>crypto isakmp policy 10
+ encryption aes 256
+ authentication pre-share
+ group 5
+
+crypto isakmp key secretkey address 209.165.200.1</code></pre>
+
+    <div class="figure-card">
+      <img src="../img/act06-isakmp.png" alt="ISAKMP policy y clave compartida">
+      <p>Figura 5. Evidencia de ISAKMP policy 10 y PSK configurada.</p>
+    </div>
+  </section>
+
+  <!-- Transform set -->
+  <section class="card-section">
+    <h3>9. IPSec transform-set</h3>
+    <p>
+      El transform-set define cómo se protegerán los datos (por ejemplo, ESP con cifrado y autenticación).
+    </p>
+
+    <pre><code>crypto ipsec transform-set R3-R1 esp-aes 256 esp-sha-hmac</code></pre>
+
+    <div class="figure-card">
+      <img src="../img/act06-transformset.png" alt="IPSec transform-set">
+      <p>Figura 6. Evidencia de IPSec transform-set configurado.</p>
+    </div>
+  </section>
+
+  <!-- Crypto map -->
+  <section class="card-section">
+    <h3>10. Crear y aplicar el mapa criptográfico (crypto map)</h3>
+    <p>
+      El crypto map vincula el peer remoto, el transform-set y la ACL del tráfico protegido, y luego se aplica
+      a la interfaz hacia la red pública para activar el túnel IPSec.
+    </p>
+
+    <pre><code>crypto map IPSEC-MAP 10 ipsec-isakmp
+ set peer 209.165.200.1
+ set transform-set R3-R1
+ match address 100
+
+interface g0/0
+ crypto map IPSEC-MAP</code></pre>
+
+    <div class="figure-card">
+      <img src="../img/act06-crypto-map.png" alt="Configuración crypto map y aplicación a interfaz">
+      <p>Figura 7. Evidencia de crypto map y aplicación en la interfaz g0/0.</p>
+    </div>
+  </section>
+
+  <!-- Validación -->
+  <section class="card-section">
+    <h3>11. Comprobación de funcionalidad y verificación del túnel</h3>
+
+    <h4>Ping entre LANs</h4>
+    <p>
+      Se verificó conectividad realizando ping desde un host en 192.168.3.0/24 hacia 192.168.1.0/24,
+      observando respuesta exitosa.
+    </p>
+
+    <div class="figure-card">
+      <img src="../img/act06-ping.png" alt="Ping exitoso entre redes a través del túnel IPSec">
+      <p>Figura 8. Prueba de conectividad (ping) entre redes LAN a través del túnel IPSec.</p>
+    </div>
+
+    <h4>Comandos de verificación</h4>
+    <pre><code>show crypto isakmp sa
+show crypto ipsec sa</code></pre>
+
+    <p>
+      El estado del túnel se validó observando intercambio de paquetes cifrados/descifrados sin errores,
+      confirmando el funcionamiento correcto del túnel VPN.
+    </p>
+
+    <div class="figure-card">
+      <img src="../img/act06-show-crypto.png" alt="Verificación de SA con show crypto ipsec sa">
+      <p>Figura 9. Verificación de asociaciones de seguridad con show crypto (ISAKMP/IPSec SA).</p>
+    </div>
+  </section>
+
+  <!-- Lecciones aprendidas -->
+  <section class="card-section">
+    <h3>12. Lecciones aprendidas</h3>
+    <ul>
+      <li>Primero debe existir conectividad básica antes de configurar IPSec.</li>
+      <li>La VPN depende de que coincidan parámetros en ambos extremos (ISAKMP, PSK, transform-set y ACL).</li>
+      <li>Los comandos <code>show crypto isakmp sa</code> y <code>show crypto ipsec sa</code> son esenciales para diagnosticar el estado del túnel.</li>
+      <li>IPSec permite asegurar comunicación entre sedes remotas garantizando confidencialidad, integridad y autenticación.</li>
+    </ul>
+  </section>
+
+  <!-- Conclusión -->
+  <section class="card-section">
+    <h3>13. Conclusión</h3>
+    <p>
+      La implementación de IPSec VPN permitió asegurar la comunicación entre dos redes remotas a través de
+      una red pública simulada. El uso de cifrado AES, autenticación mediante clave compartida y control de
+      tráfico con ACL garantizó la confidencialidad e integridad de la información transmitida.
+    </p>
+    <p>
+      Finalmente, las pruebas de conectividad y verificación del túnel confirmaron el funcionamiento correcto
+      de la VPN Site-to-Site.
+    </p>
+  </section>
+
+  <!-- Referencias -->
+  <section class="card-section">
+    <h3>14. Referencias</h3>
+    <ul>
+      <li>Cisco Systems. (s. f.). <em>Cisco IOS Security Configuration Guide (IPSec / ISAKMP)</em>.</li>
+      <li>NetAcad. (s. f.). <em>Cisco Packet Tracer Resources</em>.</li>
+      <li>Linux / Networking Concepts. (s. f.). <em>IPSec fundamentals (ESP/IKE)</em>.</li>
+    </ul>
+  </section>
+
+  <!-- Exportar -->
+  <section class="card-section" style="text-align:center;">
+    <a href="../pdf/actividad06.pdf" class="pdf-button" download>Exportar a PDF</a>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Donaldo Demián Gómez Arreguín | Portafolio de Seguridad Informática</p>
+</footer>
+
+</body>
+</html>

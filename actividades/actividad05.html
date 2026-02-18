@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Actividad 05 - Cartografiando el pentesting: análisis comparativo de metodologías de seguridad informática" />
+  <title>Actividad 05 | Seguridad Informática</title>
+
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <h1>Donaldo Demián Gómez Arreguín</h1>
+    <p class="alias">Alias: <strong>DemianDAG</strong></p>
+    <p class="course">CNO V – Seguridad Informática</p>
+    <p class="institution">Universidad Politécnica de San Luis Potosí</p>
+    <p class="period">Periodo: 8vo semestre. Primavera 2026</p>
+  </div>
+
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../actividades.html">Actividades</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Encabezado de la actividad -->
+  <section class="card-section">
+    <h2>Actividad 05 — Cartografiando el pentesting</h2>
+    <p><strong>Materia:</strong> CNO V – Seguridad Informática</p>
+    <p><strong>Profesor:</strong> Servando López Contreras</p>
+    <p><strong>Matrícula:</strong> 179822</p>
+    <p><strong>Fecha de entrega:</strong> 16/02/2026</p>
+
+    <!-- Chips resumen -->
+    <div class="meta-row">
+      <span class="chip">Comparativo de metodologías</span>
+      <span class="chip">Pentesting + Evaluación</span>
+      <span class="chip">Ofensiva / Defensa / Evaluación</span>
+      <span class="chip">Fuentes oficiales + vigencia</span>
+    </div>
+  </section>
+
+  <!-- Introducción -->
+  <section class="card-section">
+    <h3>1. Introducción</h3>
+    <p>
+      En el ámbito de la seguridad informática, la evaluación de sistemas y la identificación de
+      vulnerabilidades requieren metodologías estructuradas que permitan analizar riesgos de
+      manera sistemática y reproducible. A lo largo del tiempo, distintas organizaciones y
+      comunidades de ciberseguridad han desarrollado marcos de referencia y estándares para guiar
+      las pruebas de penetración, la evaluación de controles y el análisis de amenazas desde
+      diferentes enfoques, ya sea ofensivo, defensivo o de evaluación integral.
+    </p>
+    <p>
+      La presente actividad tiene como objetivo analizar comparativamente seis de las metodologías
+      y frameworks más relevantes en el campo del pentesting y la evaluación de seguridad: MITRE
+      ATT&CK, OWASP WSTG, NIST SP 800-115, OSSTMM, PTES e ISSAF. Cada uno de estos
+      enfoques aporta una perspectiva particular sobre cómo comprender, ejecutar o medir la
+      seguridad en sistemas de información, permitiendo seleccionar la metodología más adecuada
+      según el contexto, el tipo de sistema y el objetivo de la evaluación.
+    </p>
+    <p>
+      Este análisis comparativo facilita la comprensión de sus características, fases, aplicaciones y
+      orientación metodológica, fortaleciendo el criterio técnico para su uso en escenarios reales de
+      seguridad informática.
+    </p>
+
+    <div class="figure-card">
+      <img src="../img/pentesting-frameworks-map.png" alt="Mapa de metodologías de pentesting">
+      <p>Figura 1. Principales metodologías y frameworks utilizados en pruebas de penetración y evaluación de seguridad.</p>
+    </div>
+  </section>
+
+  <!-- Contexto de la tabla -->
+  <section class="card-section">
+    <h3>2. Tabla comparativa (contexto)</h3>
+    <p>
+      La tabla siguiente presenta un análisis sintético de las principales metodologías y marcos de
+      referencia utilizados en pruebas de penetración y evaluación de seguridad informática. Para
+      cada metodología se describen aspectos clave como su propósito, estructura o fases,
+      escenarios de aplicación, orientación (ofensiva, defensiva o de evaluación), organismo
+      responsable, vigencia y disponibilidad de certificaciones asociadas.
+    </p>
+    <p>
+      La comparación permite identificar similitudes y diferencias entre los enfoques, destacando que
+      algunas metodologías se orientan a la ejecución práctica de pruebas de penetración (por
+      ejemplo, PTES y OWASP WSTG), mientras que otras proporcionan marcos conceptuales o de
+      medición de seguridad (como MITRE ATT&CK y OSSTMM). Asimismo, se observa que ciertos
+      estándares, como NIST SP 800-115, se enfocan en evaluaciones formales dentro de
+      organizaciones, mientras que ISSAF propone un enfoque detallado de assessment técnico.
+    </p>
+    <p>
+      De esta manera, la tabla facilita la selección informada de la metodología más adecuada según
+      el contexto de aplicación, el alcance de la evaluación y los objetivos de seguridad establecidos.
+    </p>
+
+    <!-- Imagen recomendada (opcional) -->
+    <div class="figure-card">
+      <img src="../img/pentesting-orientacion.png" alt="Orientación de metodologías de pentesting">
+      <p>Figura 2. Orientación metodológica de frameworks: ataque, defensa y evaluación.</p>
+    </div>
+  </section>
+
+  <!-- Cards de frameworks (visual pro) -->
+  <section class="card-section">
+    <h3>3. Metodologías analizadas (vista rápida)</h3>
+
+    <section class="framework-grid">
+      <div class="framework-card">
+        <h4>MITRE ATT&CK</h4>
+        <p>Base de conocimiento de tácticas y técnicas de adversarios.</p>
+        <span class="tag tag-def">Defensa / Evaluación</span>
+      </div>
+
+      <div class="framework-card">
+        <h4>OWASP WSTG</h4>
+        <p>Guía de pruebas de seguridad en aplicaciones web.</p>
+        <span class="tag tag-off">Ataque / Evaluación</span>
+      </div>
+
+      <div class="framework-card">
+        <h4>NIST SP 800-115</h4>
+        <p>Guía formal de pruebas y evaluación dentro de organizaciones.</p>
+        <span class="tag tag-eval">Evaluación</span>
+      </div>
+
+      <div class="framework-card">
+        <h4>OSSTMM</h4>
+        <p>Metodología medible de seguridad operacional.</p>
+        <span class="tag tag-eval">Evaluación</span>
+      </div>
+
+      <div class="framework-card">
+        <h4>PTES</h4>
+        <p>Estándar práctico de ejecución de pentest.</p>
+        <span class="tag tag-off">Ataque</span>
+      </div>
+
+      <div class="framework-card">
+        <h4>ISSAF</h4>
+        <p>Framework detallado de assessment técnico con checklists.</p>
+        <span class="tag tag-mix">Evaluación / Ataque</span>
+      </div>
+    </section>
+  </section>
+
+  <!-- Tabla comparativa -->
+  <section class="card-section">
+    <h3>4. Tabla comparativa</h3>
+
+    <div class="table-wrap">
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th>Metodología</th>
+            <th>Descripción</th>
+            <th>Fases de implementación</th>
+            <th>Objetivo principal</th>
+            <th>Escenarios de uso</th>
+            <th>Orientación</th>
+            <th>Autores</th>
+            <th>URL</th>
+            <th>Certificación</th>
+            <th>Vigencia</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>MITRE ATT&CK</strong></td>
+            <td>Base de conocimiento de tácticas y técnicas de adversarios.</td>
+            <td>1) Matriz<br>2) Tácticas<br>3) Técnicas</td>
+            <td>Modelar y detectar ataques reales.</td>
+            <td>SOC, Red/Purple Team, detección.</td>
+            <td>Defensa / Evaluación</td>
+            <td>MITRE</td>
+            <td><a href="https://attack.mitre.org" target="_blank" rel="noopener">attack.mitre.org</a></td>
+            <td>MAD (ATT&CK Defender)</td>
+            <td>v18.1 (2025)</td>
+          </tr>
+
+          <tr>
+            <td><strong>OWASP WSTG</strong></td>
+            <td>Guía de pruebas de seguridad en aplicaciones web.</td>
+            <td>Áreas de testing web</td>
+            <td>Identificar vulnerabilidades web.</td>
+            <td>Pentest web, auditorías app.</td>
+            <td>Ataque / Evaluación</td>
+            <td>OWASP</td>
+            <td><a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" rel="noopener">owasp.org/WSTG</a></td>
+            <td>No directa</td>
+            <td>v4.2</td>
+          </tr>
+
+          <tr>
+            <td><strong>NIST SP 800-115</strong></td>
+            <td>Guía formal de pruebas y evaluación de seguridad.</td>
+            <td>1) Planning<br>2) Discovery<br>3) Attack<br>4) Report</td>
+            <td>Estandarizar testing organizacional.</td>
+            <td>Auditorías, gobierno, empresa.</td>
+            <td>Evaluación</td>
+            <td>NIST</td>
+            <td><a href="https://csrc.nist.gov/publications/detail/sp/800-115/final" target="_blank" rel="noopener">csrc.nist.gov/800-115</a></td>
+            <td>N/A</td>
+            <td>2008 (vigente)</td>
+          </tr>
+
+          <tr>
+            <td><strong>OSSTMM</strong></td>
+            <td>Metodología medible de seguridad operacional.</td>
+            <td>Canales: físico, humano, red, etc.</td>
+            <td>Medir seguridad integral.</td>
+            <td>Auditoría infraestructura/global.</td>
+            <td>Evaluación</td>
+            <td>ISECOM</td>
+            <td><a href="https://www.isecom.org" target="_blank" rel="noopener">isecom.org</a></td>
+            <td>OPSA/OPST</td>
+            <td>3.02</td>
+          </tr>
+
+          <tr>
+            <td><strong>PTES</strong></td>
+            <td>Estándar práctico de ejecución de pentest.</td>
+            <td>7 fases (pre → post → reporte).</td>
+            <td>Estandarizar pentesting real.</td>
+            <td>Pentest red/interno/externo.</td>
+            <td>Ataque</td>
+            <td>PTES</td>
+            <td><a href="http://www.pentest-standard.org" target="_blank" rel="noopener">pentest-standard.org</a></td>
+            <td>N/A</td>
+            <td>Estable</td>
+          </tr>
+
+          <tr>
+            <td><strong>ISSAF</strong></td>
+            <td>Framework detallado de assessment técnico.</td>
+            <td>Fases + checklists técnicos.</td>
+            <td>Evaluación profunda de sistemas.</td>
+            <td>Auditoría técnica completa.</td>
+            <td>Evaluación / Ataque</td>
+            <td>OISSG</td>
+            <td><a href="http://www.issaf.org" target="_blank" rel="noopener">issaf.org</a></td>
+            <td>Limitada</td>
+            <td>0.2.1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  
+
+  <!-- Conclusión -->
+  <section class="card-section">
+    <h3>5. Conclusión</h3>
+    <p>
+      El análisis comparativo de las metodologías MITRE ATT&CK, OWASP WSTG, NIST SP 800-115,
+      OSSTMM, PTES e ISSAF permite comprender que no existe un único enfoque universal para la
+      evaluación de la seguridad informática, sino que cada marco responde a necesidades y
+      contextos específicos. Mientras algunas metodologías se orientan a la ejecución práctica de
+      pruebas ofensivas, otras se centran en la medición de la postura de seguridad o en la
+      comprensión de las técnicas empleadas por los adversarios.
+    </p>
+    <p>
+      Esta diversidad metodológica resulta fundamental en el ámbito profesional, ya que permite
+      seleccionar el enfoque más adecuado según el tipo de sistema, el objetivo de la evaluación y el
+      nivel de profundidad requerido. Por ejemplo, OWASP WSTG y PTES son particularmente útiles
+      en pruebas técnicas de penetración, MITRE ATT&CK contribuye al análisis y detección de
+      amenazas reales, y NIST SP 800-115 u OSSTMM aportan estructuras formales para
+      evaluaciones organizacionales.
+    </p>
+    <p>
+      En conclusión, el conocimiento y la correcta aplicación de estas metodologías fortalecen la
+      capacidad de análisis, evaluación y gestión de la seguridad en entornos reales, constituyendo
+      herramientas esenciales para el ejercicio profesional en ciberseguridad.
+    </p>
+
+    <!-- Imagen opcional -->
+    <div class="figure-card">
+      <img src="../img/pentest-cycle.jpeg" alt="Ciclo general de un pentest">
+      <p>Figura 4. Fases generales de un pentest (planeación → descubrimiento → ataque → reporte).</p>
+    </div>
+  </section>
+
+  <!-- Referencias -->
+  <section class="card-section">
+    <h3>6. Referencias</h3>
+    <ul>
+      <li>MITRE Corporation. (2025). MITRE ATT&CK® framework. https://attack.mitre.org</li>
+      <li>OWASP Foundation. (2023). OWASP Web Security Testing Guide (WSTG). https://owasp.org/www-project-web-security-testing-guide/</li>
+      <li>National Institute of Standards and Technology (NIST). (2008). Technical guide to information security testing and assessment (SP 800-115). https://csrc.nist.gov/publications/detail/sp/800-115/final</li>
+      <li>ISECOM. (2010). OSSTMM 3: Open Source Security Testing Methodology Manual. https://www.isecom.org</li>
+      <li>Penetration Testing Execution Standard (PTES). (2014). PTES technical guidelines. http://www.pentest-standard.org</li>
+      <li>Open Information Systems Security Group (OISSG). (2005). Information Systems Security Assessment Framework (ISSAF).</li>
+    </ul>
+  </section>
+
+  <!-- Exportar a PDF -->
+  <section class="card-section" style="text-align:center;">
+    <a href="../pdf/actividad05.pdf" class="pdf-button" download>Exportar a PDF</a>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Donaldo Demián Gómez Arreguín | Portafolio de Seguridad Informática</p>
+</footer>
+
+</body>
+</html>

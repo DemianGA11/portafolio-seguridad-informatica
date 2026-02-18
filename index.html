@@ -1,107 +1,160 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio digital de Seguridad Informática - CNO V">
-    <title>Portafolio | Seguridad Informática</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portafolio digital - Seguridad Informática (CNO V)" />
+  <title>Inicio | Portafolio - Seguridad Informática</title>
 
-    <!-- Hoja de estilos -->
-    <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
 
-    <!-- ================= HEADER ================= -->
-    <header>
-        <div class="header-container">
-            <h1>Donaldo Gómez Arreguín</h1>
-            <p class="alias">Alias: <strong>DemianDAG</strong></p>
-            <p class="course">CNO V – Seguridad Informática</p>
-            <p class="institution">Universidad Politécnica de San Luis Potosí</p>
-            <p class="period">Periodo: 8vo semestre. Primavera 2026</p>
+<header>
+  <div class="header-container">
+    <h1>Donaldo Demián Gómez Arreguín</h1>
+    <p class="alias">Alias: <strong>DemianDAG</strong></p>
+    <p class="course">CNO V – Seguridad Informática</p>
+    <p class="institution">Universidad Politécnica de San Luis Potosí</p>
+    <p class="period">Periodo: 8vo semestre. Primavera 2026</p>
+  </div>
+
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="#">Proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Portafolio Digital</h2>
+            <h3>Seguridad Informática</h3>
+
+            <p>
+                Evidencias académicas y prácticas técnicas en hacking ético, defensa en red
+                y evaluación de seguridad.
+            </p>
+
+            <a href="actividades.html" class="hero-button">Ver actividades</a>
         </div>
-
-        <!-- ===== NAVIGATION ===== -->
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="actividades.html">Actividades</a></li>
-                <li><a href="#">Proyectos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- ================= MAIN CONTENT ================= -->
-    <main id="inicio">
-
-        <!-- ===== Presentación del Portafolio ===== -->
-        <section id="presentacion">
-            <h2>Presentación del Portafolio</h2>
-            <p>
-                Este portafolio digital tiene como propósito documentar y presentar
-                las evidencias académicas correspondientes a la asignatura
-                <strong>Seguridad Informática (CNO V)</strong>. A lo largo del curso,
-                se abordarán fundamentos del hacking ético, análisis de vulnerabilidades
-                y principios de protección de sistemas informáticos.
-            </p>
-        </section>
-
-        <!-- ===== Perfil del Estudiante ===== -->
-        <section id="perfil">
-            <h2>Perfil del Estudiante</h2>
-            <p>
-                Estudiante de octavo semestre de la carrera de Ingeniería en Tecnologías de la Información, con interés en el aprendizaje constante de temas nuevos y relevantes que aporten valor en el contexto tecnológico actual. Muestra especial afinidad por áreas relacionadas con la seguridad informática, la ciberseguridad y el análisis de sistemas, buscando fortalecer sus competencias técnicas y su formación profesional.
-            </p>
-        </section>
-
-        <!-- ===== Información Técnica ===== -->
-        <section id="info-tecnica">
-            <h2>Información Técnica</h2>
-            <ul>
-                <li><strong>Tecnologías utilizadas:</strong> HTML5, CSS3, JavaScript</li>
-                <li><strong>Plataforma de publicación:</strong> GitHub Pages</li>
-                <li><strong>Control de versiones:</strong> Git</li>
-            </ul>
-        </section>
-
-        <!-- ===== Formulario de Contacto ===== -->
-        <section id="contacto">
-            <h2>Contacto</h2>
-
-            <form action="https://formspree.io/f/xpqdbnnd" method="POST">
-
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-
-                <!-- Campo oculto recomendado -->
-                <input type="hidden" name="_subject" value="Nuevo mensaje desde el portafolio">
-
-                <button type="submit">Enviar</button>
-            </form>
-
-            <p class="form-note">
-                El mensaje será enviado de forma segura.
-            </p>
-        </section>
+    </section>
 
 
-    </main>
+  <!-- ACCESOS RÁPIDOS -->
+  <section class="activity-grid">
+    <a href="actividades.html" class="activity-card">
+      <h3>Actividades</h3>
+      <p class="activity-title">Accede al listado completo de evidencias del curso.</p>
+      <span class="activity-tag">Ver actividades</span>
+    </a>
 
-    <!-- ================= FOOTER ================= -->
-    <footer>
-        <p>
-            © 2026 Donaldo Gómez Arreguín |
-            Portafolio de Seguridad Informática |
-            Todos los derechos reservados.
-        </p>
-    </footer>
+    <a href="actividades/actividad01.html" class="activity-card">
+      <h3>Destacado</h3>
+      <p class="activity-title">Caso real: NotPetya – Maersk (2017).</p>
+      <span class="activity-tag">Abrir</span>
+    </a>
+
+    <a href="#contacto" class="activity-card">
+      <h3>Contacto</h3>
+      <p class="activity-title">Envíame un mensaje directo desde el formulario.</p>
+      <span class="activity-tag">Ir</span>
+    </a>
+  </section>
+
+  <!-- SOBRE EL PORTAFOLIO -->
+  <section class="card-section">
+    <h3>Propósito del portafolio</h3>
+    <p>
+      Documentar de manera clara y profesional el proceso de aprendizaje en Seguridad Informática,
+      presentando evidencias técnicas, configuraciones, análisis y reflexiones. El objetivo es demostrar
+      comprensión y aplicación práctica de conceptos relevantes en ciberseguridad.
+    </p>
+
+    <h3 style="margin-top: 1.2rem;">Enfoque del curso</h3>
+    <ul>
+      <li>Seguridad informática y fundamentos de hacking ético</li>
+      <li>Análisis de incidentes y evidencias</li>
+      <li>Filtrado y mecanismos de defensa en red (iptables)</li>
+      <li>Metodologías de evaluación y pruebas de penetración</li>
+      <li>Implementación de soluciones seguras (VPN IPSec)</li>
+    </ul>
+  </section>
+
+  <!-- INFO TÉCNICA -->
+  <section class="card-section">
+    <h3>Información técnica</h3>
+
+    <div class="table-wrap">
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th>Elemento</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tecnologías</strong></td>
+            <td>HTML, CSS</td>
+          </tr>
+          <tr>
+            <td><strong>Publicación</strong></td>
+            <td>GitHub Pages (URL pública con HTTPS)</td>
+          </tr>
+          <tr>
+            <td><strong>Control de versiones</strong></td>
+            <td>Git + GitHub (historial y respaldo del proyecto)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="card-section">
+    <h3>Contacto</h3>
+    <p>
+      Puedes contactarme mediante el siguiente formulario.
+    </p>
+
+    <!-- Si ya tienes Formspree, pega aquí tu action -->
+    <form action="https://formspree.io/f/xpqdbnnd" method="POST" class="contact-form">
+      <label>
+        Nombre
+        <input type="text" name="name" required>
+      </label>
+
+      <label>
+        Correo
+        <input type="email" name="email" required>
+      </label>
+
+      <label>
+        Mensaje
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+
+      <button type="submit" class="pdf-button">Enviar mensaje</button>
+    </form>
+
+    <p style="margin-top: 0.8rem; color:#64748b; font-size:0.9rem;">
+      Nota: el envío se gestiona mediante Formspree y genera respuesta automática.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Donaldo Demián Gómez Arreguín | Portafolio de Seguridad Informática</p>
+</footer>
 
 </body>
 </html>

@@ -2,56 +2,97 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividades | Seguridad Informática</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
 <header>
     <div class="header-container">
-            <h1>Donaldo Gómez Arreguín</h1>
-            <p class="alias">Alias: <strong>DemianDAG</strong></p>
-            <p class="course">CNO V – Seguridad Informática</p>
-            <p class="institution">Universidad Politécnica de San Luis Potosí</p>
-            <p class="period">Periodo: 8vo semestre. Primavera 2026</p>
-        </div>
+        <h1>Donaldo Gómez Arreguín</h1>
+        <p class="alias">Alias: <strong>DemianDAG</strong></p>
+        <p class="course">CNO V – Seguridad Informática</p>
+        <p class="institution">Universidad Politécnica de San Luis Potosí</p>
+        <p class="period">Periodo: 8vo semestre. Primavera 2026</p>
+    </div>
 
-        <!-- ===== NAVIGATION ===== -->
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="actividades.html">Actividades</a></li>
-                <li><a href="#">Proyectos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="actividades.html">Actividades</a></li>
+            <li><a href="#">Proyectos</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+    </nav>
 </header>
 
 <main>
-    <section>
-        <h2>Actividades Académicas</h2>
-        <p>
-            Esta sección documenta de manera estructurada las actividades
-            desarrolladas durante la asignatura de Seguridad Informática.
-        </p>
 
-        <ul class="activity-list">
-            <li><a href="actividades/actividad01.html">Actividad 01 - Ciberataque real</a></li>
-            <li><a href="actividades/actividad02.html">Actividad 02 - Servicios X.800 y RFC 4949</a></li>
-            <li><a href="actividades/actividad03.html">Actividad 03 - Políticas iptables</a></li>
-            <li><a href="actividades/actividad04.html">Actividad 04 - Defensa en red</a></li>
-            <li><a href="actividades/actividad05.html">Actividad 05 - Metodologías de pentesting</a></li>
-            <li><a href="actividades/actividad06.html">Actividad 06 - Implementación IPSec VPN</a></li>
-        </ul>
-    </section>
+<section class="card-section">
+    <h2>Actividades Académicas</h2>
+    <p>
+        Esta sección documenta de manera estructurada las actividades desarrolladas durante la asignatura
+        de Seguridad Informática, incluyendo análisis de ciberataques, configuraciones de red segura,
+        evaluación de metodologías y prácticas de implementación de seguridad.
+    </p>
+</section>
+
+<!-- GRID DE ACTIVIDADES -->
+<section class="activity-grid">
+
+    <a href="actividades/actividad01.html" class="activity-card">
+        <h3>Actividad 01</h3>
+        <p class="activity-title">Análisis de ciberataque real (NotPetya – Maersk)</p>
+        <span class="activity-tag">Análisis</span>
+    </a>
+
+    <a href="actividades/actividad02.html" class="activity-card">
+        <h3>Actividad 02</h3>
+        <p class="activity-title">Servicios X.800 y RFC 4949</p>
+        <span class="activity-tag">Conceptual</span>
+    </a>
+
+    <a href="actividades/actividad03.html" class="activity-card">
+        <h3>Actividad 03</h3>
+        <p class="activity-title">Interpretación de políticas iptables</p>
+        <span class="activity-tag">Firewall</span>
+    </a>
+
+    <a href="actividades/actividad04.html" class="activity-card">
+        <h3>Actividad 04</h3>
+        <p class="activity-title">Mecanismos de defensa en red</p>
+        <span class="activity-tag">Red</span>
+    </a>
+
+    <a href="actividades/actividad05.html" class="activity-card">
+        <h3>Actividad 05</h3>
+        <p class="activity-title">Cartografiando el pentesting</p>
+        <span class="activity-tag">Metodologías</span>
+    </a>
+
+    <a href="actividades/actividad06.html" class="activity-card">
+        <h3>Actividad 06</h3>
+        <p class="activity-title">Implementación IPSec VPN</p>
+        <span class="activity-tag">VPN</span>
+    </a>
+    <a href="actividades/actividad07.html" class="activity-card">
+    <h3>Actividad 07</h3>
+        <p class="activity-title">Caso OxyMonster (test)</p>
+        <span class="activity-tag">Investigación</span>
+    </a>
+
+</section>
+
 </main>
 
 <footer>
     <p>
-            © 2026 Donaldo Gómez Arreguín |
-            Portafolio de Seguridad Informática |
-            Todos los derechos reservados.
-        </p>
+        © 2026 Donaldo Gómez Arreguín |
+        Portafolio de Seguridad Informática |
+        Todos los derechos reservados.
+    </p>
 </footer>
 
 </body>
