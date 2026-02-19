@@ -195,7 +195,7 @@ exit
 ip route 0.0.0.0 0.0.0.0 209.165.200.2</code></pre>
 
     <div class="figure-card">
-      <img src="../img/act06-config-inicial.png" alt="Capturas configuración inicial R1 ISP R3">
+      <img src="../img/act06-config-inicial.PNG" alt="Capturas configuración inicial R1 ISP R3">
       <p>Figura 2. Evidencia de configuración inicial (interfaces IP y rutas). (Opcional: colocar capturas del Packet Tracer)</p>
     </div>
   </section>
@@ -212,7 +212,7 @@ ip route 0.0.0.0 0.0.0.0 209.165.200.2</code></pre>
 reload</code></pre>
 
     <div class="figure-card">
-      <img src="../img/act06-licencia-securityk9.png" alt="Licencia securityk9 habilitada">
+      <img src="../img/act06-licencia-securityk9.PNG" alt="Licencia securityk9 habilitada">
       <p>Figura 3. Evidencia del comando para habilitar securityk9 y reinicio (reload).</p>
     </div>
   </section>
@@ -228,7 +228,7 @@ reload</code></pre>
     <pre><code>access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255</code></pre>
 
     <div class="figure-card">
-      <img src="../img/act06-acl100.png" alt="ACL 100 tráfico interesante">
+      <img src="../img/act06-acl100.PNG" alt="ACL 100 tráfico interesante">
       <p>Figura 4. ACL 100 definiendo tráfico interesante entre LAN 1 y LAN 3.</p>
     </div>
   </section>
@@ -249,7 +249,7 @@ reload</code></pre>
 crypto isakmp key secretkey address 209.165.200.1</code></pre>
 
     <div class="figure-card">
-      <img src="../img/act06-isakmp.png" alt="ISAKMP policy y clave compartida">
+      <img src="../img/act06-isakmp.PNG" alt="ISAKMP policy y clave compartida">
       <p>Figura 5. Evidencia de ISAKMP policy 10 y PSK configurada.</p>
     </div>
   </section>
@@ -264,7 +264,7 @@ crypto isakmp key secretkey address 209.165.200.1</code></pre>
     <pre><code>crypto ipsec transform-set R3-R1 esp-aes 256 esp-sha-hmac</code></pre>
 
     <div class="figure-card">
-      <img src="../img/act06-transformset.png" alt="IPSec transform-set">
+      <img src="../img/act06-transformset.PNG" alt="IPSec transform-set">
       <p>Figura 6. Evidencia de IPSec transform-set configurado.</p>
     </div>
   </section>
@@ -286,7 +286,7 @@ interface g0/0
  crypto map IPSEC-MAP</code></pre>
 
     <div class="figure-card">
-      <img src="../img/act06-crypto-map.png" alt="Configuración crypto map y aplicación a interfaz">
+      <img src="../img/act06-crypto-map.PNG" alt="Configuración crypto map y aplicación a interfaz">
       <p>Figura 7. Evidencia de crypto map y aplicación en la interfaz g0/0.</p>
     </div>
   </section>
@@ -302,7 +302,7 @@ interface g0/0
     </p>
 
     <div class="figure-card">
-      <img src="../img/act06-ping.png" alt="Ping exitoso entre redes a través del túnel IPSec">
+      <img src="../img/act06-ping.PNG" alt="Ping exitoso entre redes a través del túnel IPSec">
       <p>Figura 8. Prueba de conectividad (ping) entre redes LAN a través del túnel IPSec.</p>
     </div>
 
@@ -316,7 +316,7 @@ show crypto ipsec sa</code></pre>
     </p>
 
     <div class="figure-card">
-      <img src="../img/act06-show-crypto.png" alt="Verificación de SA con show crypto ipsec sa">
+      <img src="../img/act06-show-crypto.PNG" alt="Verificación de SA con show crypto ipsec sa">
       <p>Figura 9. Verificación de asociaciones de seguridad con show crypto (ISAKMP/IPSec SA).</p>
     </div>
   </section>
@@ -369,3 +369,4 @@ show crypto ipsec sa</code></pre>
 
 </body>
 </html>
+
